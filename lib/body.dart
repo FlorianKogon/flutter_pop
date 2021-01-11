@@ -14,7 +14,7 @@ class _BodyState extends State<Body> {
     // TODO: implement build
     return Center(
       child: RaisedButton(
-        onPressed: test,
+        onPressed: snack,
         color: Colors.teal,
         textColor: Colors.black,
         child: Text(
@@ -28,9 +28,13 @@ class _BodyState extends State<Body> {
     );
   }
 
-  void test() {
-    setState(() {
-      print("on a cliqué");
-    });
+  void snack() {
+    SnackBar snackBar = SnackBar(
+      duration: Duration(seconds: 1),
+      content:
+        Text('Je suis une snackbar')
+      );
+    Scaffold.of(context).showSnackBar(snackBar);
   }
+  
 }
