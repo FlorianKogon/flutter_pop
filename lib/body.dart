@@ -13,18 +13,35 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Center(
-      child: RaisedButton(
-        onPressed: snack,
-        color: Colors.teal,
-        textColor: Colors.black,
-        child: Text(
-            "Appuyez",
-          style: TextStyle(
-            fontStyle: FontStyle.italic,
-            fontSize: 20.0,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          RaisedButton(
+            onPressed: snack,
+            color: Colors.teal,
+            textColor: Colors.black,
+            child: Text(
+              "Appuyez",
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+                fontSize: 20.0,
+              ),
+            ),
           ),
-        ),
-      ),
+          RaisedButton(
+            onPressed: alert,
+            color: Colors.teal,
+            textColor: Colors.black,
+            child: Text(
+              "Appuyez",
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+                fontSize: 20.0,
+              ),
+            ),
+          ),
+        ],
+      )
     );
   }
 
@@ -36,5 +53,36 @@ class _BodyState extends State<Body> {
       );
     Scaffold.of(context).showSnackBar(snackBar);
   }
-  
+
+  Future<Null> alert() async {
+    return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Ceci est une alerte", textScaleFactor: 2.0,),
+          content: Text("ALLO"),
+          contentPadding: EdgeInsets.all(5.0),
+          actions: <Widget>[
+            FlatButton(
+                onPressed: () => {
+                  print('test1'),
+                  Navigator.pop(context)
+                },
+                child: Text('Annulez', style: TextStyle(color: Colors.red, fontSize: 8.0),
+                ),
+            ),
+            FlatButton(
+                onPressed: () => {
+                  print('test2'),
+                  Navigator.pop(context)
+                },
+                child: Text('Acceptez', style: TextStyle(color: Colors.teal, fontSize: 12.0),
+                ),
+            ),
+          ],
+        );
+      }
+    );
+  }
 }
