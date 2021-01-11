@@ -40,6 +40,16 @@ class _BodyState extends State<Body> {
               ),
             ),
           ),
+          RaisedButton(
+            onPressed: () => dialog('Test', 'Ceci est un test'),
+            child: Text(
+              "Appuyez",
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+                fontSize: 20.0,
+              ),
+            ),
+          ),
         ],
       )
     );
@@ -79,6 +89,39 @@ class _BodyState extends State<Body> {
                 },
                 child: Text('Acceptez', style: TextStyle(color: Colors.teal, fontSize: 12.0),
                 ),
+            ),
+          ],
+        );
+      }
+    );
+  }
+
+  Future<Null> dialog(String title, String description) async {
+    return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: Text(title, textScaleFactor: 1.4,),
+          contentPadding: EdgeInsets.all(10.0),
+          children: [
+            Text(
+              description,
+              textScaleFactor: 1.2,
+            ),
+            RaisedButton(
+              color: Colors.teal,
+              onPressed: () => {
+                Navigator.pop(context)
+              },
+              child: Text(
+                "Appuyez",
+                style: TextStyle(
+                  fontSize: 14.0,
+                  color: Colors.white,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
             ),
           ],
         );
